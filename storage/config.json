@@ -1,0 +1,16 @@
+{
+    "DbConfiguration": {
+        "logCritical": true,
+        "logDebug": false,
+        "logInfo": true,
+        "logWarning": false,
+        "logError": true
+    },
+    "telegramLogger": {
+        "logCritical": true,
+        "logDebug": false,
+        "logInfo": false,
+        "logWarning": true,
+        "logError": true
+    }
+}
