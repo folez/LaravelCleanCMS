@@ -1,1 +1,0 @@
-<img src="/img/how_it_work.png" alt="" style="width: 100%;object-fit: contain">
