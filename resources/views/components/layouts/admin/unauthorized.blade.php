@@ -10,7 +10,7 @@
                maximum-scale=1.0,
                minimum-scale=1.0">
      <meta http-equiv="X-UA-Compatible" content="ie=edge">
-     <title>Дешевле чем в интернете | DigitalLab</title>
+     <title>{{env('ADMIN_TITLE')}}</title>
     {{-- Assets --}}
     <link rel="stylesheet" href="{{asset('shared/assets/bootstrap5/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('shared/styles/normalize.min.css')}}">

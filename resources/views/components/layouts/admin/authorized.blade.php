@@ -10,7 +10,7 @@
                maximum-scale=1.0,
                minimum-scale=1.0">
      <meta http-equiv="X-UA-Compatible" content="ie=edge">
-     <title>Дешевле чем в интернете | DigitalLab</title>
+     <title>{{env('ADMIN_TITLE')}}</title>
 
     {{-- Fonts --}}
     <link rel="stylesheet" href="{{asset('shared/fonts/Gilroy/stylesheet.css')}}">
