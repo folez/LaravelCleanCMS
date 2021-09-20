@@ -5,7 +5,13 @@
 Run command
 
 ```shell
-$ php artisan role:intall
+$ php artisan role:install
+```
+#Uninstalling Spatie Permission
+Run command
+
+```shell
+$ php artisan role:uninstall
 ```
 
 #Change Telegram bot token and chat id
