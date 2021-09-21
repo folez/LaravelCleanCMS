@@ -53,6 +53,10 @@ class ComposerStaticInita8ff435b5589c04c8dbbd1b66d035b9e
             'Whoops\\' => 7,
             'Webmozart\\Assert\\' => 17,
         ),
+        'U' => 
+        array (
+            'Utils\\' => 6,
+        ),
         'T' => 
         array (
             'TijsVerkoyen\\CssToInlineStyles\\' => 31,
@@ -88,6 +92,7 @@ class ComposerStaticInita8ff435b5589c04c8dbbd1b66d035b9e
             'Symfony\\Component\\ErrorHandler\\' => 31,
             'Symfony\\Component\\CssSelector\\' => 30,
             'Symfony\\Component\\Console\\' => 26,
+            'Services\\' => 9,
         ),
         'R' => 
         array (
@@ -118,6 +123,7 @@ class ComposerStaticInita8ff435b5589c04c8dbbd1b66d035b9e
         'M' => 
         array (
             'Monolog\\' => 8,
+            'Models\\' => 7,
         ),
         'L' => 
         array (
@@ -200,6 +206,10 @@ class ComposerStaticInita8ff435b5589c04c8dbbd1b66d035b9e
         'Webmozart\\Assert\\' => 
         array (
             0 => __DIR__ . '/..' . '/webmozart/assert/src',
+        ),
+        'Utils\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/utils',
         ),
         'TijsVerkoyen\\CssToInlineStyles\\' => 
         array (
@@ -321,6 +331,10 @@ class ComposerStaticInita8ff435b5589c04c8dbbd1b66d035b9e
         array (
             0 => __DIR__ . '/..' . '/symfony/console',
         ),
+        'Services\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/services',
+        ),
         'Ramsey\\Uuid\\' => 
         array (
             0 => __DIR__ . '/..' . '/ramsey/uuid/src',
@@ -381,6 +395,10 @@ class ComposerStaticInita8ff435b5589c04c8dbbd1b66d035b9e
         'Monolog\\' => 
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
+        ),
+        'Models\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/models',
         ),
         'Livewire\\' => 
         array (
@@ -533,6 +551,7 @@ class ComposerStaticInita8ff435b5589c04c8dbbd1b66d035b9e
 
     public static $classMap = array (
         'App\\Console\\Commands\\RoleInstallCommand' => __DIR__ . '/../..' . '/app/Console/Commands/RoleInstallCommand.php',
+        'App\\Console\\Commands\\RoleUnistallCommand' => __DIR__ . '/../..' . '/app/Console/Commands/RoleUnistallCommand.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\Admin\\AuthController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/AuthController.php',
@@ -553,6 +572,7 @@ class ComposerStaticInita8ff435b5589c04c8dbbd1b66d035b9e
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',
         'App\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/app/Providers/EventServiceProvider.php',
+        'App\\Providers\\LoggerServiceProvider' => __DIR__ . '/../..' . '/app/Providers/LoggerServiceProvider.php',
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
         'App\\View\\Components\\AppLayout' => __DIR__ . '/../..' . '/app/View/Components/AppLayout.php',
         'App\\View\\Components\\Components\\Markup\\Collapse' => __DIR__ . '/../..' . '/app/View/Components/Components/Markup/Collapse.php',
@@ -3328,6 +3348,10 @@ class ComposerStaticInita8ff435b5589c04c8dbbd1b66d035b9e
         'Mockery\\Undefined' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Undefined.php',
         'Mockery\\VerificationDirector' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/VerificationDirector.php',
         'Mockery\\VerificationExpectation' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/VerificationExpectation.php',
+        'Models\\Configuration' => __DIR__ . '/../..' . '/models/Configuration.php',
+        'Models\\FcmNotificationMessage' => __DIR__ . '/../..' . '/models/FcmNotificationMessage.php',
+        'Models\\LoggerConfiguration' => __DIR__ . '/../..' . '/models/LoggerConfiguration.php',
+        'Models\\NotFoundException' => __DIR__ . '/../..' . '/models/NotFoundException.php',
         'Monolog\\DateTimeImmutable' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/DateTimeImmutable.php',
         'Monolog\\ErrorHandler' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/ErrorHandler.php',
         'Monolog\\Formatter\\ChromePHPFormatter' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Formatter/ChromePHPFormatter.php',
@@ -4808,6 +4832,13 @@ class ComposerStaticInita8ff435b5589c04c8dbbd1b66d035b9e
         'SebastianBergmann\\Type\\UnknownType' => __DIR__ . '/..' . '/sebastian/type/src/UnknownType.php',
         'SebastianBergmann\\Type\\VoidType' => __DIR__ . '/..' . '/sebastian/type/src/VoidType.php',
         'SebastianBergmann\\Version' => __DIR__ . '/..' . '/sebastian/version/src/Version.php',
+        'Services\\Contracts\\IConfigurationService' => __DIR__ . '/../..' . '/services/Contracts/IConfigurationService.php',
+        'Services\\Contracts\\LoggerServiceBase' => __DIR__ . '/../..' . '/services/Contracts/LoggerServiceBase.php',
+        'Services\\Impls\\CompositeLogger' => __DIR__ . '/../..' . '/services/Impls/CompositeLogger.php',
+        'Services\\Impls\\DbLogger' => __DIR__ . '/../..' . '/services/Impls/DbLogger.php',
+        'Services\\Impls\\FileLogger' => __DIR__ . '/../..' . '/services/Impls/FileLogger.php',
+        'Services\\Impls\\LocalConfigurationProvider' => __DIR__ . '/../..' . '/services/Impls/LocalConfigurationProvider.php',
+        'Services\\Impls\\TelegramLogger' => __DIR__ . '/../..' . '/services/Impls/TelegramLogger.php',
         'Stringable' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Stringable.php',
         'Symfony\\Component\\Console\\Application' => __DIR__ . '/..' . '/symfony/console/Application.php',
         'Symfony\\Component\\Console\\Attribute\\AsCommand' => __DIR__ . '/..' . '/symfony/console/Attribute/AsCommand.php',
@@ -5696,6 +5727,7 @@ class ComposerStaticInita8ff435b5589c04c8dbbd1b66d035b9e
         'TijsVerkoyen\\CssToInlineStyles\\Css\\Rule\\Processor' => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src/Css/Rule/Processor.php',
         'TijsVerkoyen\\CssToInlineStyles\\Css\\Rule\\Rule' => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src/Css/Rule/Rule.php',
         'UnhandledMatchError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/UnhandledMatchError.php',
+        'Utils\\StackTraceExtension' => __DIR__ . '/../..' . '/utils/StackTraceExtension.php',
         'ValueError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/ValueError.php',
         'Webmozart\\Assert\\Assert' => __DIR__ . '/..' . '/webmozart/assert/src/Assert.php',
         'Webmozart\\Assert\\InvalidArgumentException' => __DIR__ . '/..' . '/webmozart/assert/src/InvalidArgumentException.php',
