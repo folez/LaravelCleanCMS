@@ -46,6 +46,29 @@ public const TABLE_NAME = "page_translation";
 protected $table = self::TABLE_NAME;
 ```
 
+# Seo data trait
+From use **SEO** add
+```php
+use SeoTrait;
+```
+
+### Seo data properties
+
+`title` - this is **title** from `<title></title>`
+
+`description` - this is **title** from `<meta name="description"`
+
+`keywords` - this is **title** from `<meta name="keywords"`
+
+`ogg_title` - this is **Social preview title** from `<meta property="og:title"` and another social title meta tags
+
+`ogg_description` - this is **og:description** from `<meta property="og:description"` and another social descriptions meta tags
+
+`image_url` - this is **og:image** from `<meta property="og:image"` and another social image(preview) meta tags
+
+`ogg_image` - this is **og:image** from `<meta property="og:image"` and another social image(preview) meta tags
+
+
 #Gallery uploader usage
 
 In your .php class of livewire component add given code
