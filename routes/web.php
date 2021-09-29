@@ -13,6 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+foreach (\App\Models\Language::all() as $lang){
+    Route::middleware('locale')->prefix(( $lang->is_default ? '/' : $lang->code ))->group(function () {
+        Route::get('/', function () {
+            var_dump(app()->getLocale());
+        });
+    });
+}
