@@ -15,6 +15,11 @@ use Illuminate\Support\Facades\Route;
 
 foreach (\App\Models\Language::all() as $lang){
     Route::middleware('locale')->prefix(( $lang->is_default ? '/' : $lang->code ))->group(function () {
+        foreach (\App\Models\Page::languageCode() as $page){
+            Route::get("{$page->slug}", function () use ($page) {
+                return 'this is a '.$page->name;
+            });
+        }
         Route::get('/', function () {
             var_dump(app()->getLocale());
         });

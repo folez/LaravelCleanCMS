@@ -12,7 +12,14 @@ class LocaleMiddleware
 	{
         foreach (Language::where('is_default', '=',false)->get() as $lang){
             if(\Route::current()->getPrefix() == "/{$lang->code}"){
-                app()->setLocale($lang->code);
+
+                if($request->session()->get('locale')){
+                    $locale = $request->session()->get('locale') ?? $lang->code;
+                    app()->setLocale($locale);
+                } else {
+                    app()->setLocale($lang->code);
+                }
+//                app()->setLocale($lang->code);
                 return $next( $request );
             }
         }
