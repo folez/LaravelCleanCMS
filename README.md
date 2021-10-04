@@ -69,7 +69,7 @@ use SeoTrait;
 `ogg_image` - this is **og:image** from `<meta property="og:image"` and another social image(preview) meta tags
 
 
-#Gallery uploader usage
+# Gallery uploader usage
 
 In your .php class of livewire component add given code
 
@@ -93,7 +93,7 @@ In your .blade livewire component paste this code
 @endif
 ```
 
-#Variable descriptions
+# Variable descriptions
 `model-type` - Insert your model class with namespace(**in editing record it required property**)
 
 `model-id` - Is record id example `:model-id="$item->id"`
@@ -102,7 +102,7 @@ In your .blade livewire component paste this code
 
 if editing mode the `is-edit` required property and pass in **1**
 
-#Handle add support gallery
+# Handle add support gallery
 In your save method, after `model->save();` paste this code
 
 `$this->item->id` replace for your public property
@@ -117,20 +117,20 @@ if(!$this->isEditMode){
 }
 ```
 
-#Installing Spatie Permission
+# Installing Spatie Permission
 Run command
 
 ```shell
 $ php artisan role:install
 ```
-#Uninstalling Spatie Permission
+# Uninstalling Spatie Permission
 Run command
 
 ```shell
 $ php artisan role:uninstall
 ```
 
-#Change Telegram bot token and chat id
+# Change Telegram bot token and chat id
 ```dotenv
 TELEGRAM_BOT_ACCESS_TOKEN=#Put her telegram bot token
 TELEGRAM_CHAT_ID=#Put her chat id
