@@ -24,4 +24,6 @@ class PageTranslation extends Model
     protected $fillable = [
         'title', 'name', 'description', 'keywords', 'body', 'page_id', 'language_id'
     ];
+
+    protected $primaryKey = [ 'page_id', 'language_id' ];
 }
