@@ -506,6 +506,11 @@
   border-color: var(--accent-color);
 }
 
+.modal-content{
+    border-color: var(--muted-red);
+}
+
+
 .colored-label {
   color: #fff;
   display: flex;
@@ -514,4 +519,19 @@
   width: 100%;
   padding: 7px;
   border-radius: 10px;
+}
+
+.status{
+    padding: .25rem .5rem;
+    border-radius: 3px;
+}
+
+.status-success {
+    background-color: #3ea041;
+    color: #fff;
+}
+
+.status-error {
+    background-color: #a03e3e;
+    color: #fff;
 }

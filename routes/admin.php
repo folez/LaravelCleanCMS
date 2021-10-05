@@ -11,6 +11,7 @@ Route::name('admin.')
 		Route::get('/', \App\Http\Livewire\Admin\Pages\Dashboard::class)->name('home');
 
         Route::get('settings', \App\Http\Livewire\Admin\Pages\Settings::class)->name('settings');
+        Route::get('languages', \App\Http\Livewire\Admin\Pages\Language::class)->name('languages');
 
 		Route::get('logout', [\App\Http\Controllers\Admin\AuthController::class, 'logout'])->name('logout');
 	});

@@ -41,14 +41,3 @@
         @endforeach
     </script>
 @endpush
-
-
-id
-setting_name
-setting_key
-setting_type
-setting_value
-Setting::getByKey('TELEGRAM_BOT_TOKEN');
-Setting::getByNameAndKey('google','tag')
-Setting::getByKeyAndType('google','analytic')
-Setting::getByKeyAndType('facebook','pixel')

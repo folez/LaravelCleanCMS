@@ -25,15 +25,14 @@
                     Статистика
                 </x-components.admin.sidenav-link>
             </li>
-            {{--<li class="nav-item">
-                <x-components.admin.sidenav-link link="{{route('admin.records.list')}}">
+            <li class="nav-item">
+                <x-components.admin.sidenav-link link="{{route('admin.languages')}}">
                     <x-slot name="icon">
-                        <i class="fal fa-file-alt"></i>
+                        <i class="fal fa-language fs-4"></i>
                     </x-slot>
-                    Записи
+                    Языки
                 </x-components.admin.sidenav-link>
             </li>
-            --}}
             <li class="nav-item">
                 <x-components.admin.sidenav-link link="{{route('admin.settings')}}">
                     <x-slot name="icon">

@@ -37,4 +37,9 @@ class Language extends Model
     {
         return self::where('code', $code)->first();
     }
+
+    public static function getDefaultLanguage()
+    {
+        return self::where('is_default', 1)->first();
+    }
 }
