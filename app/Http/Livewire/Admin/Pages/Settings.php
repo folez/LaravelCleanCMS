@@ -31,6 +31,10 @@ class Settings extends Component
     {
         $this->settings = \App\Models\Settings::all();
 
+        if(!\Storage::exists('public/global')){
+            \Storage::makeDirectory('public/global');
+        }
+
         foreach ($this->settings as $setting){
             $this->settingMap[$setting->setting_name][$setting->setting_key] = $setting->setting_value;
             $this->settingMapType[$setting->setting_name][$setting->setting_key] = $setting->setting_type;
