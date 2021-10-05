@@ -22,6 +22,7 @@ class PageSeeder extends Seeder
         $pageRu->keywords = $title;
         $pageRu->body = $title;
         $pageRu->language_id = 1;
+        $pageRu->page_id = $page->id;
         $pageRu->save();
 
         $title = 'Hello World!';
@@ -31,7 +32,8 @@ class PageSeeder extends Seeder
         $pageRu->description = $title;
         $pageRu->keywords = $title;
         $pageRu->body = $title;
-        $pageRu->language_id = 1;
+        $pageRu->language_id = 2;
+        $pageRu->page_id = $page->id;
         $pageRu->save();
 	}
 }

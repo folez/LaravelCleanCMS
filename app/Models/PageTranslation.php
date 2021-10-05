@@ -26,4 +26,19 @@ class PageTranslation extends Model
     ];
 
     protected $primaryKey = [ 'page_id', 'language_id' ];
+
+    public array $mappedFillable = [
+        'input'    => [
+            'title'         => 'string',
+            'name'          => 'string',
+            'keywords'      => 'string',
+            'description'   => 'string',
+        ],
+        'textarea'  => [
+
+        ],
+        'ckeditor'  => [
+            'body'  => 'required'
+        ]
+    ];
 }

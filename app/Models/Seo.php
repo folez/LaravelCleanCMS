@@ -32,5 +32,7 @@ class Seo extends Model
 
         'model_type',
         'model_id',
+
+        'sysname'
     ];
 }

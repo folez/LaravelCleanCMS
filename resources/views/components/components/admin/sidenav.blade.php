@@ -25,7 +25,7 @@
                     Статистика
                 </x-components.admin.sidenav-link>
             </li>
-            <li class="nav-item">
+            {{--<li class="nav-item">
                 <x-components.admin.sidenav-link link="{{route('admin.records.list')}}">
                     <x-slot name="icon">
                         <i class="fal fa-file-alt"></i>
@@ -33,12 +33,13 @@
                     Записи
                 </x-components.admin.sidenav-link>
             </li>
+            --}}
             <li class="nav-item">
-                <x-components.admin.sidenav-link link="{{route('admin.notify')}}">
+                <x-components.admin.sidenav-link link="{{route('admin.settings')}}">
                     <x-slot name="icon">
-                        <i class="fal fa-bell"></i>
+                        <i class="fal fa-cog"></i>
                     </x-slot>
-                    Уведомления
+                    Настройки
                 </x-components.admin.sidenav-link>
             </li>
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Admin\Components;
 
+use App\Models\Language;
 use Illuminate\Database\Eloquent\Model;
 use Livewire\Component;
 
@@ -9,9 +10,15 @@ class TranslateForm extends Component
 {
     public array $attributeMapping = [];
 
+    public array $inputTypes;
+
     public int $languageId = 0;
 
-    public $modelClass;
+    public Model $modelClass;
+
+    public Language $lang;
+
+    protected array $rules;
 
     protected $listeners = [
         'saveTranslate'
@@ -23,23 +30,33 @@ class TranslateForm extends Component
             'attributeMapping.language_id' => 'integer'
         ];
 
-        foreach($this->attributeMapping as $key => $attribute) {
-            if($key == 'language_id')
-                $rules["attributeMapping.{$key}"] = 'integer';
-            else
-                $rules["attributeMapping.{$key}"] = 'string';
+        foreach ( $this->modelClass->mappedFillable as $inputType => $inputArray ) {
+
+            foreach( $inputArray as $input => $rule ) {
+                $rules["attributeMapping.{$input}"] = $rule;
+            }
+
         }
+
         return $rules;
     }
 
     public function mount( $model )
     {
         $this->modelClass = new $model;
-        foreach ($this->modelClass->getFillable() as $attribute) {
-            if( str_contains($attribute, 'id') ) continue;
-            $this->attributeMapping[$attribute] = '';
+        foreach ( $this->modelClass->mappedFillable as $inputType => $inputArray ) {
+
+            foreach( $inputArray as $input => $rule ) {
+                $this->rules["attributeMapping.{$input}"] = $rule;
+                $this->inputTypes[$input] = $inputType;
+                $this->attributeMapping[$input] = '';
+            }
+
         }
+
         $this->attributeMapping['language_id']  = $this->languageId;
+
+        $this->lang = Language::find($this->languageId);
     }
 
     public function saveTranslate( $modelItemId )

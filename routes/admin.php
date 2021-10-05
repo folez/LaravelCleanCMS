@@ -8,9 +8,9 @@ Route::name('admin.')
 	->middleware("authorized" )
 	->group(function () {
 //		Route::get('preview/{image}', [ \App\Http\Controllers\Admin\ImageController::class, 'compileImage' ])->name('image');
-		Route::get('/', function () {
-            return 123;
-        })->name('home');
+		Route::get('/', \App\Http\Livewire\Admin\Pages\Dashboard::class)->name('home');
+
+        Route::get('settings', \App\Http\Livewire\Admin\Pages\Settings::class)->name('settings');
 
 		Route::get('logout', [\App\Http\Controllers\Admin\AuthController::class, 'logout'])->name('logout');
 	});

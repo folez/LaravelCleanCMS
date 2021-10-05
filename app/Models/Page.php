@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\SeoTrait;
 use App\Traits\Translatable;
 use Illuminate\Database\Eloquent\Model;
 
@@ -17,7 +18,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Page extends Model
 {
-    use Translatable;
+    use Translatable, SeoTrait;
 
     protected string $translationFkName = 'page_id';
     protected string $translationTableName = PageTranslation::TABLE_NAME;
