@@ -18,11 +18,22 @@ In you component use this example
 <textarea name="content" data-is-upload="true" id="content" data-tiny data-tinymce-id="content" cols="30" rows="10"></textarea>
 ```
 
----
-data-is-upload: true or false - from show file manager uploader
-data-tiny: this data attribute required from instance editor
-data-tinymce-id: attribute id
----
+
+<table>
+  <tr>
+    <td nowrap><strong>data-tiny</strong></td>
+    <td>this data attribute required from instance editor.</td>
+  </tr>
+  <tr>
+    <td nowrap><strong>data-is-upload</strong></td>
+    <td>true or false, from show file manager uploader</td>
+  </tr>
+  <tr>
+    <td nowrap><strong>data-tinymce-id</strong></td>
+    <td>attribute id.</td>
+  </tr>
+</table>
+
 
 ## Set listener for livewire
 ```html
