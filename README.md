@@ -12,6 +12,27 @@
 ## Write admin livewire components
 #### In your .php file, in the `render()` method, at the end of the line `return view();` add `layout('components.layouts.admin.authorized');`
 
+# Tinymce Instance
+In you component use this example
+```blade
+<textarea name="content" data-is-upload="true" id="content" data-tiny data-tinymce-id="content" cols="30" rows="10"></textarea>
+```
+
+---
+data-is-upload: true or false - from show file manager uploader
+data-tiny: this data attribute required from instance editor
+data-tinymce-id: attribute id
+---
+
+## Set listener for livewire
+```html
+<script>
+    adminFunctions.tinymceInstances()['content'].on('change', () => {
+		@this.set('model', adminFunctions.tinymceInstances()['content'].getContent())
+    })
+</script>
+```
+
 
 # Translatable model
 Create two model, own model and `name`Translation

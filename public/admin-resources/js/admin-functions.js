@@ -27,7 +27,7 @@ const adminFunctions =
         #modalInstances;
         #canWriteToClipboard;
         preferences;
-        #ckeditorInstances;
+        #tinymceInstances;
 
         constructor() {
             this.init();
@@ -39,7 +39,7 @@ const adminFunctions =
                 this.#body = document.querySelector('body');
 
                 this.#modalInstances = {};
-                this.#ckeditorInstances = {};
+                this.#tinymceInstances = {};
                 this.preferences = new Preferences();
 
                 this.#restoreFoldedState();
@@ -56,59 +56,95 @@ const adminFunctions =
 
 
                 this.#reportInitState();
-                this.#initCkeditor();
+                this.#initTinymce();
 
 
             }).bind(this);
         }
 
-        get #initCkeditor()
+        get #initTinymce()
         {
-            return (async ()=>{
-                [...document.querySelectorAll('[data-ckeditor]')].forEach(item=>{
-                    const id = item.dataset.ckeditorId;
+            return (async () => {
+                [...document.querySelectorAll('[data-tiny]')].forEach(item => {
+                    const id = item.dataset.tinymceId;
+                    const imageUpload = item.dataset.isUpload;
 
-                    ClassicEditor
-                        .create( item, {
-                            // plugins: ['Strikethrough'],
-                            toolbar: {
-                                items: [
-                                    'heading',
-                                    '|',
-                                    'bold',
-                                    'strikethrough',
-                                    'italic',
-                                    'underline',
-                                    'link',
-                                    'bulletedList',
-                                    'numberedList',
-                                    '|',
-                                    'alignment',
-                                    'outdent',
-                                    'indent',
-                                    '|',
-                                    'blockQuote',
-                                    'undo',
-                                    'redo',
-                                    'fontBackgroundColor',
-                                    'fontColor',
-                                    'fontSize',
-                                    'fontFamily'
-                                ]
+                    let options = {
+                        selector: `#${id}`,
+                        language : "ru",
+                        element_format : 'html',
+                        skin: 'oxide',
+                        width : "100%",
+                        theme: 'silver',
+                        height : 400,
+                        setup: (editor) => {
+                            editor.on('init change', function () {
+                                editor.save();
+                            });
+                            this.#tinymceInstances[id] = editor;
+                        },
+                        plugins: [
+                            'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+                            'searchreplace wordcount visualblocks visualchars code fullscreen media',
+                        ],
+                        contextmenu: 'image link imagetools table spellchecker lists',
+                        toolbar1: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+                        toolbar2: 'print preview media | forecolor backcolor emoticons | codesample help',
+                        branding: false,
+                    };
+
+                    if(imageUpload) {
+                        options = {
+                            selector: `#${id}`,
+                            language : "ru",
+                            element_format : 'html',
+                            skin: 'oxide',
+                            width : "100%",
+                            theme: 'silver',
+                            height : 400,
+                            setup: (editor) => {
+                                editor.on('init change', function () {
+                                    editor.save();
+                                });
+                                this.#tinymceInstances[id] = editor;
                             },
-                            /*toolbar: [
-                                "heading", "|", "alignment:left", "alignment:center", "alignment:right", "alignment:adjust", "|", "bold", "italic", "strikethrough", "link", "|", "bulletedList", "numberedList", "imageUpload", "|", "undo", "redo"],*/
-                            language: 'ru',
-                            // extraPlugins: [ this.#customUploadPlugin ]
-                        })
-                        .then(instance=>{
-                            this.#ckeditorInstances[id] = instance;
-                            // this.ckEditorInstances[id] = instance;
-                        }).catch(error=>{
+                            plugins: [
+                                'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+                                'searchreplace wordcount visualblocks visualchars code fullscreen media',
+                            ],
+                            contextmenu: 'image link imagetools table spellchecker lists',
+                            toolbar1: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+                            toolbar2: 'print preview media | forecolor backcolor emoticons | codesample help',
+                            branding: false,
+                            file_picker_callback : function(callback, value, meta) {
+                                var x = window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth;
+                                var y = window.innerHeight|| document.documentElement.clientHeight|| document.getElementsByTagName('body')[0].clientHeight;
 
-                    });
-                });
-            }).bind(this);
+                                var cmsURL = '/admin/' + 'filemngr?editor=' + meta.fieldname;
+                                if (meta.filetype == 'image') {
+                                    cmsURL = cmsURL + "&type=Images";
+                                } else {
+                                    cmsURL = cmsURL + "&type=Files";
+                                }
+
+                                tinyMCE.activeEditor.windowManager.openUrl({
+                                    url : cmsURL,
+                                    title : 'Загрузка файлов',
+                                    width : x * 0.8,
+                                    height : y * 0.8,
+                                    resizable : "yes",
+                                    close_previous : "no",
+                                    onMessage: (api, message) => {
+                                        callback(message.content);
+                                    }
+                                });
+                            }
+                        }
+                    }
+
+                    tinymce.init(options);
+                })
+            });
         }
 
         get #customUploadPlugin()
@@ -130,9 +166,9 @@ const adminFunctions =
             }).bind(this);
         }
 
-        get ckeditorInstances()
+        get tinymceInstances()
         {
-            return (()=>this.#ckeditorInstances).bind(this)
+            return (()=>this.#tinymceInstances).bind(this)
         }
 
         #reportInitState()
@@ -160,10 +196,6 @@ const adminFunctions =
             }).bind(this);
         }
 
-        // event : {
-        // 'selector' : /*simple selector*/,
-        // 'action' : 'show'|'hide'|null
-        // }
         // bind context to function
         get livewireModalListiner(){
             return ((event)=>
@@ -204,15 +236,6 @@ const adminFunctions =
                 livewireComponent.on('dropdown-set-value',(args)=>dropdowns[args.name]?.setChoiceByValue(`${args.value}`));
             }).bind(this);
         }
-
-        // get bindCkEditor()
-        // {
-        //     return ((livewireComponent,propertyName,id)=>{
-        //         adminFunctions.ckeditorInstances()[id].model.document.on( 'change:data', () => {
-        //             livewireComponent.set(propertyName, adminFunctions.ckeditorInstances()[id].getData());
-        //         } );
-        //     }).bind(this);
-        // }
 
         get copyToClipboard(){
             if(this.#canWriteToClipboard)

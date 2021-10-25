@@ -14,4 +14,12 @@ Route::name('admin.')
         Route::get('languages', \App\Http\Livewire\Admin\Pages\Language::class)->name('languages');
 
 		Route::get('logout', [\App\Http\Controllers\Admin\AuthController::class, 'logout'])->name('logout');
-	});
+
+        Route::group(['prefix' => 'filemngr', 'middleware' => ['web', 'auth']], function () {
+            \UniSharp\LaravelFilemanager\Lfm::routes();
+        });
+
+        /*Route::prefix('filemngr')->group(function () {
+            \UniSharp\LaravelFilemanager\Lfm::routes();
+        });*/
+    });

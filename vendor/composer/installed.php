@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => '386f89d8b26f3002d09d342a5ac91c1170123f01',
+    'reference' => 'e5ab0bc57af3e29515cd13b6bf29e682c4bdde5f',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -445,7 +445,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => '386f89d8b26f3002d09d342a5ac91c1170123f01',
+      'reference' => 'e5ab0bc57af3e29515cd13b6bf29e682c4bdde5f',
     ),
     'laravel/sail' => 
     array (
@@ -1329,6 +1329,15 @@
       array (
       ),
       'reference' => 'b43b05cf43c1b6d849478965062b6ef73e223bb5',
+    ),
+    'unisharp/laravel-filemanager' => 
+    array (
+      'pretty_version' => 'v2.2.0',
+      'version' => '2.2.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '34202590a88ecfc598c6dc70dae8b306710d4df2',
     ),
     'vlucas/phpdotenv' => 
     array (

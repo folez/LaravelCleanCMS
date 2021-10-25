@@ -17,11 +17,11 @@ foreach (\App\Models\Language::all() as $lang){
     Route::middleware('locale')->prefix(( $lang->is_default ? '/' : $lang->code ))->group(function () {
         foreach (\App\Models\Page::languageCode() as $page){
             Route::get("{$page->slug}", function () use ($page) {
-                return 'this is a '.$page->name;
+                return 'this is a '.$page->body;
             });
         }
-        Route::get('/', function () {
-            var_dump(app()->getLocale());
-        });
+        Route::get('/', \App\Http\Livewire\CheckDy::class);
     });
 }
+
+Route::get('preview-gallery/{image}', [ \App\Http\Controllers\Admin\ImageCompileController::class, 'renderGalleryAdminPreview' ])->name('renderGalleryAdminPreview');

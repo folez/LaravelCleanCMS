@@ -57,6 +57,7 @@
 {{--    <script src="https://cdn.ckeditor.com/ckeditor5/29.0.0/classic/ckeditor.js"></script>--}}
     <script src="{{asset('shared/assets/ckeditor5/build/translations/uk.js')}}"></script>
     <script src="{{asset('shared/assets/ckeditor5/build/ckeditor.js')}}"></script>
+    <script src="{{asset('shared/assets/tiny_mce/tinymce.min.js')}}"></script>
     {{--  Project scripts  --}}
     @stack('modals')
     @stack('scripts')
