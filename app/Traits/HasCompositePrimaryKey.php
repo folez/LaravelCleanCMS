@@ -2,6 +2,8 @@
 
 namespace App\Traits;
 
+use Illuminate\Support\Str;
+
 trait HasCompositePrimaryKey
 {
     /**
@@ -51,13 +53,4 @@ trait HasCompositePrimaryKey
         return $query->first($columns);
     }
 
-    public function getKey()
-    {
-        $attributes = [];
-        foreach ($this->getKeyName() as $key) {
-            $attributes[$key] = $this->getAttribute($key);
-        }
-
-        return $attributes;
-    }
 }

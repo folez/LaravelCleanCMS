@@ -8,11 +8,36 @@ use Illuminate\Http\Request;
 
 class LocaleMiddleware
 {
-	public function handle( Request $request, Closure $next )
-	{
-        foreach (Language::where('is_default', '=',false)->get() as $lang){
-            if(\Route::current()->getPrefix() == "/{$lang->code}"){
+    public function handle( Request $request, Closure $next )
+    {
+        if(\Route::current()->getPrefix() == '/en'){
+            if($request->session()->get('locale')){
+                $locale = $request->session()->get('locale') ?? 'en';
+                app()->setLocale($locale);
+            } else {
+                app()->setLocale('en');
+            }
+            return $next( $request );
+        }
 
+        //        return $result;
+        if($request->session()->get('locale')){
+            $locale = $request->session()->get('locale');
+            app()->setLocale($locale);
+        }
+        if($request->session()->get('locale') == 'en'){
+            $segment = $request->segment(1);
+            $segments = $request->segments();
+            $locale = 'en';
+            app()->setLocale($locale);
+            array_unshift($segments, $locale);
+
+            return redirect()->to(implode('/',$segments));
+        }
+        return $next( $request );
+
+        /*foreach (Language::where('is_default', '=',false)->get() as $lang){
+            if(\Route::current()->getPrefix() == "/{$lang->code}"){
                 if($request->session()->get('locale')){
                     $locale = $request->session()->get('locale') ?? $lang->code;
                     app()->setLocale($locale);
@@ -28,6 +53,6 @@ class LocaleMiddleware
             $locale = $request->session()->get('locale');
             app()->setLocale($locale);
         }
-		return $next( $request );
-	}
+		return $next( $request );*/
+    }
 }

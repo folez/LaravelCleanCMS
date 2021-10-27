@@ -12,15 +12,15 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('change-lang/{lang}', [\App\Http\Controllers\HelperController::class, 'changeLang'])->name('changeLang');
 
 foreach (\App\Models\Language::all() as $lang){
-    Route::middleware('locale')->prefix(( $lang->is_default ? '/' : $lang->code ))->group(function () {
-        foreach (\App\Models\Page::languageCode() as $page){
+    Route::middleware('locale')->prefix(( $lang->is_default ? '/' : $lang->code ))->group(function () use ($lang) {
+        foreach (\App\Models\Page::languageCode()->get() as $page){
             Route::get("{$page->slug}", function () use ($page) {
-                return 'this is a '.$page->body;
+                return view('welcome', [ 'page' => $page ]);
             });
         }
-        Route::get('/', \App\Http\Livewire\CheckDy::class);
     });
 }
 

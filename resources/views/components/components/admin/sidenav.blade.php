@@ -26,6 +26,14 @@
                 </x-components.admin.sidenav-link>
             </li>
             <li class="nav-item">
+                <x-components.admin.sidenav-link link="{{route('admin.pages.list')}}">
+                    <x-slot name="icon">
+                        <i class="fal fa-list"></i>
+                    </x-slot>
+                    Страницы
+                </x-components.admin.sidenav-link>
+            </li>
+            <li class="nav-item">
                 <x-components.admin.sidenav-link link="{{route('admin.languages')}}">
                     <x-slot name="icon">
                         <i class="fal fa-language fs-4"></i>
