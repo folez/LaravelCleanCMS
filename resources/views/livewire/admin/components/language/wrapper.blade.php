@@ -16,7 +16,7 @@
             'active' => $lang->is_default
             ]) id="lang_{{$lang->code}}" role="tabpanel" aria-labelledby="home-tab" wire:ignore.self>
             <div class="w-100 mt-3">
-                <livewire:admin.components.language.content wire:key="{{$lang->id}}" :model="$model" p-key="page_id" :id="$modelId" :language="$lang"/>
+                <livewire:admin.components.language.content wire:key="{{$lang->id}}" :model="$model" :p-key="$primaryKey" :id="$modelId" :language="$lang"/>
             </div>
     </div>
     @endforeach

@@ -9,6 +9,7 @@ class Wrapper extends Component
     public string $model;
     public ?int $modelId = null;
     public string|null $parentComponent;
+    public ?string $primaryKey = null;
 
     protected $listeners = [ 'savedTranslate' ];
 

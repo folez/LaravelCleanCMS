@@ -23,7 +23,7 @@
                         </div>
                     </div>
                     <div class="col-12 col-lg-9">
-                        <livewire:admin.components.language.wrapper :model-id="$page?->id" :model="\App\Models\PageTranslation::class"/>
+                        <livewire:admin.components.language.wrapper :model-id="$page?->id" primary-key="page_id"  :model="\App\Models\PageTranslation::class"/>
                     </div>
                 </div>
                 <div class="row w-100 mt-5">
