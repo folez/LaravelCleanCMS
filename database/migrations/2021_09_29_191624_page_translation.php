@@ -10,6 +10,7 @@ class PageTranslation extends Migration
 	public function up()
 	{
 		Schema::create( \App\Models\PageTranslation::TABLE_NAME, function ( Blueprint $table ) {
+            $table->bigIncrements( 'p_id' );
 			$table->string('title');
 			$table->string('name');
 			$table->mediumText('description');
@@ -29,7 +30,7 @@ class PageTranslation extends Migration
                 ->on( Language::TABLE_NAME)
                 ->cascadeOnDelete();
 
-            $table->primary(['language_id', 'page_id']);
+//            $table->primary(['language_id', 'page_id']);
 		} );
 	}
 
