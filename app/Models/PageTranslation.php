@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Traits\HasCompositePrimaryKey;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -16,10 +15,11 @@ use Illuminate\Database\Eloquent\Model;
  */
 class PageTranslation extends Model
 {
-    use HasCompositePrimaryKey;
     public const TABLE_NAME = "page_translation";
     protected $table = self::TABLE_NAME;
     public $timestamps = false;
+
+    public $incrementing = false;
 
     protected $fillable = [
         'title', 'name', 'description', 'keywords', 'body', 'page_id', 'language_id'
@@ -27,18 +27,32 @@ class PageTranslation extends Model
 
     protected $primaryKey = 'p_id';
 
-    public array $mappedFillable = [
-        'input'    => [
-            'title'         => 'string',
-            'name'          => 'string',
-            'keywords'      => 'string',
-            'description'   => 'string',
+    public array $mapFillable = [
+        'name' => [
+            'type'  => 'input',
+            'rule'  => 'string',
+            'name'  => 'Название'
         ],
-        'textarea'  => [
 
+        'title' => [
+            'type'  => 'input',
+            'rule'  => 'string',
+            'name'  => 'Заголовок'
         ],
-        'ckeditor'  => [
-            'body'  => 'required'
-        ]
+        'keywords' => [
+            'type'  => 'input',
+            'rule'  => 'string',
+            'name'  => 'Ключевые слова'
+        ],
+        'description' => [
+            'type'  => 'input',
+            'rule'  => 'string',
+            'name'  => 'Мета описание'
+        ],
+        'body' => [
+            'type'  => 'editor',
+            'rule'  => 'string',
+            'name'  => 'Описание'
+        ],
     ];
 }
