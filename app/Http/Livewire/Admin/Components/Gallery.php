@@ -49,7 +49,7 @@ class Gallery extends Component
      */
     public int|null $modelId = null;
 
-    public function mount( bool $isEdit = false, string $modelType, int|null $modelId = null ):void
+    public function mount( string $modelType, ?int $modelId = null ):void
     {
         $this->modelTyping = $modelType;
 
@@ -57,14 +57,16 @@ class Gallery extends Component
             \Storage::makeDirectory('public/gallery');
         }
 
-        if(!$isEdit) $this->temp_id = uniqid();
+        $this->isEditMode = $modelId != null;
+
+        if(!$this->isEditMode) $this->temp_id = uniqid();
         else $this->items = \App\Models\Gallery::findbyModelType($this->modelTyping);
     }
 
     /**
      * @param $galleryIds
      */
-    public function updateGalleryPriority( $galleryIds )
+    public function updateGalleryPriority( $galleryIds ): void
     {
         foreach ($galleryIds as $item) {
             $img = \App\Models\Gallery::find($item['value']);
@@ -75,10 +77,8 @@ class Gallery extends Component
         $this->items = \App\Models\Gallery::findbyModelType($this->modelTyping);
     }
 
-    /**
-     *
-     */
-    public function updatedImages()
+
+    public function updatedImages(): void
     {
         foreach ($this->images as $key => $item){
             $image = new \App\Models\Gallery();
@@ -113,7 +113,7 @@ class Gallery extends Component
         $itm = \App\Models\Gallery::find($galleryKey);
 
         \Storage::delete('public/gallery/'.$itm->filename);
-        \Storage::delete('public/gallery_cache/'.$itm->filename);
+        \Storage::delete('public/gallery_cache/admin_'.$itm->filename);
 
         $itm->forceDelete();
 

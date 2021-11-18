@@ -18,13 +18,13 @@
             @if($items)
                 @foreach($items as $key => $itm)
                     <div wire:sortable.item="{{ $itm->id }}" wire:key="task-{{ $itm->id }}" class="g-col-md-2 g-col-6 col-12">
-                        <label wire:sortable.handle for="galleryItem{{$key}}">
+                        <label wire:sortable.handle for="galleryItem{{$key}}" style="position: relative">
                             <div class="p-2 no-image">
                                 @php
                                     $tmp = explode('/',$itm->filename);
                                 @endphp
                                 <img src="{{route('renderGalleryAdminPreview', ['image' => end($tmp)])}}" alt="" style="object-fit: contain; width: 100%;">
-                                <a href="{{asset($itm->filename)}}" data-fancybox class="no-image__zoom">
+                                <a href="{{asset('storage/gallery/'.$itm->filename)}}" data-fancybox class="no-image__zoom">
                                     <i class="far fa-search-plus"></i>
                                 </a>
                                 <button wire:click.prevent="deleteGalleryItem({{$itm->id}})" class="no-image__delete">
@@ -39,3 +39,6 @@
         </div>
     </div>
 </div>
+@push('scripts')
+    <script src="https://cdn.jsdelivr.net/gh/livewire/sortable@v0.x.x/dist/livewire-sortable.js"></script>
+@endpush
