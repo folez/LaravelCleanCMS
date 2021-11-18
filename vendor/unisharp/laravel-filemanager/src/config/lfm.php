@@ -55,7 +55,6 @@ return [
                 'image/pjpeg',
                 'image/png',
                 'image/gif',
-                'image/svg+xml',
                 'application/pdf',
                 'text/plain',
             ],
@@ -69,7 +68,6 @@ return [
                 'image/pjpeg',
                 'image/png',
                 'image/gif',
-                'image/svg+xml',
             ],
         ],
     ],
@@ -102,12 +100,15 @@ return [
 
     'should_validate_size'     => false,
 
-    'should_validate_mime'     => false,
+    'should_validate_mime'     => true,
 
     // behavior on files with identical name
     // setting it to true cause old file replace with new one
     // setting it to false show `error-file-exist` error and stop upload
     'over_write_on_duplicate'  => false,
+
+    // Item Columns
+    'item_columns' => ['name', 'url', 'time', 'icon', 'is_file', 'is_image', 'thumb_url'],
 
     /*
     |--------------------------------------------------------------------------

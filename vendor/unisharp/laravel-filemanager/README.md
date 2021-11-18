@@ -3,7 +3,7 @@
 <p align="center">
   <a target="_blank" href="https://packagist.org/packages/unisharp/laravel-filemanager"><img src="https://poser.pugx.org/unisharp/laravel-filemanager/downloads"></a>
   <a target="_blank" href="https://packagist.org/packages/unisharp/laravel-filemanager"><img src="https://img.shields.io/packagist/dm/unisharp/laravel-filemanager.svg"></a>
-  <a target="_blank" href="https://packagist.org/packages/unisharp/laravel-filemanager"><img src="https://img.shields.io/badge/stable-2.0.0-blue.svg"></a>
+  <a target="_blank" href="https://packagist.org/packages/unisharp/laravel-filemanager"><img src="https://img.shields.io/badge/stable-2.2.0-blue.svg"></a>
   <a target="_blank" href="https://packagist.org/packages/unisharp/laravel-filemanager"><img src="https://poser.pugx.org/unisharp/laravel-filemanager/license"></a>
   <br>
   <a target="_blank" href="https://travis-ci.org/UniSharp/laravel-filemanager"><img src="https://img.shields.io/travis/UniSharp/laravel-filemanager.svg"></a>
@@ -64,7 +64,9 @@ We are also going to gain more integration like vue.js and Laravel Nova. Any PR 
 
  * [All contibutors](https://github.com/UniSharp/laravel-filemanager/graphs/contributors) from GitHub. (issues / PR)
  * [@taswler](https://github.com/tsawler) the original author of this package.
- * Nathan for providing security suggestions.
+ * Security contributors (sort by alphabet)
+    * Ayon Hasan (@lollipopl337)
+    * Nathan
  * [@mdnazmulhasan27771](https://github.com/mdnazmulhasan27771) the designer of our logo. (Licensed CC BY 4.0)
 
 ### Credits

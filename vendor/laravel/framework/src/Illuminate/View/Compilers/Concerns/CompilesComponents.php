@@ -2,6 +2,7 @@
 
 namespace Illuminate\View\Compilers\Concerns;
 
+use Illuminate\Contracts\Support\CanBeEscapedWhenCastToString;
 use Illuminate\Support\Str;
 use Illuminate\View\ComponentAttributeBag;
 
@@ -77,15 +78,7 @@ trait CompilesComponents
      */
     protected function compileEndComponent()
     {
-        $hash = array_pop(static::$componentHashStack);
-
-        return implode("\n", [
-            '<?php if (isset($__componentOriginal'.$hash.')): ?>',
-            '<?php $component = $__componentOriginal'.$hash.'; ?>',
-            '<?php unset($__componentOriginal'.$hash.'); ?>',
-            '<?php endif; ?>',
-            '<?php echo $__env->renderComponent(); ?>',
-        ]);
+        return '<?php echo $__env->renderComponent(); ?>';
     }
 
     /**
@@ -95,7 +88,13 @@ trait CompilesComponents
      */
     public function compileEndComponentClass()
     {
+        $hash = array_pop(static::$componentHashStack);
+
         return $this->compileEndComponent()."\n".implode("\n", [
+            '<?php endif; ?>',
+            '<?php if (isset($__componentOriginal'.$hash.')): ?>',
+            '<?php $component = $__componentOriginal'.$hash.'; ?>',
+            '<?php unset($__componentOriginal'.$hash.'); ?>',
             '<?php endif; ?>',
         ]);
     }
@@ -183,6 +182,10 @@ trait CompilesComponents
      */
     public static function sanitizeComponentAttribute($value)
     {
+        if (is_object($value) && $value instanceof CanBeEscapedWhenCastToString) {
+            return $value->escapeWhenCastingToString();
+        }
+
         return is_string($value) ||
                (is_object($value) && ! $value instanceof ComponentAttributeBag && method_exists($value, '__toString'))
                         ? e($value)

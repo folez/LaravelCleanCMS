@@ -201,7 +201,7 @@ class LfmPath
         }
 
         uasort($arr_items, function ($a, $b) use ($key_to_sort) {
-            return strcmp($a->{$key_to_sort}, $b->{$key_to_sort});
+            return strcasecmp($a->{$key_to_sort}, $b->{$key_to_sort});
         });
 
         return $arr_items;
@@ -277,8 +277,9 @@ class LfmPath
 
     private function getNewName($file)
     {
-        $new_file_name = $this->helper
-            ->translateFromUtf8(trim(pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME)));
+        $new_file_name = $this->helper->translateFromUtf8(
+            trim($this->helper->utf8Pathinfo($file->getClientOriginalName(), "filename"))
+        );
 
         $extension = $file->getClientOriginalExtension();
 
