@@ -2,7 +2,7 @@
 
 namespace App\Traits;
 
-class WithSearch
+trait WithSearch
 {
     public ?string $search = null;
     protected string $MATCH_RULE = 'like';
