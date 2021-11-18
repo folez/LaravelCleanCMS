@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 Route::get('change-lang/{lang}', [\App\Http\Controllers\HelperController::class, 'changeLang'])->name('changeLang');
 
-foreach (\App\Models\Language::all() as $lang){
+/*foreach (\App\Models\Language::all() as $lang){
     Route::middleware('locale')->prefix(( $lang->is_default ? '/' : $lang->code ))->group(function () use ($lang) {
         foreach (\App\Models\Page::languageCode()->get() as $page){
             Route::get("{$page->slug}", function () use ($page) {
@@ -22,6 +22,6 @@ foreach (\App\Models\Language::all() as $lang){
             });
         }
     });
-}
+}*/
 
 Route::get('preview-gallery/{image}', [ \App\Http\Controllers\Admin\ImageCompileController::class, 'renderGalleryAdminPreview' ])->name('renderGalleryAdminPreview');

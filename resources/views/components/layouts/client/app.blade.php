@@ -5,7 +5,19 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>MyMycoLab</title>
+    <title>{{$titlePage??setting('seo.title')}}</title>
+    <meta property='og:image' content='{{asset(setting('seo.ogg_image'))}}' />
+
+    <meta name="keywords" content="{{$keywordsPage??setting('seo.keywords')}}" />
+
+    <meta name="description" content="{{$descriptionPage??setting('seo.description')}}" />
+
+    <link rel="apple-touch-icon" type="image/vnd.microsoft.icon" sizes="76x76" href="{{asset(setting('global.favicon'))}}">
+    <link rel="icon" type="image/vnd.microsoft.icon" href="{{asset(setting('global.favicon'))}}">
+    <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="{{asset(setting('global.favicon'))}}">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="76x76" href="{{asset(setting('global.favicon'))}}">
+    <link rel="icon" type="image/x-icon" href="{{asset(setting('global.favicon'))}}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{asset(setting('global.favicon'))}}">
 
     @livewireStyles
     <link rel="stylesheet" href="{{asset('shared/assets/bootstrap5/css/bootstrap.min.css')}}">
@@ -61,9 +73,9 @@
     @livewireScripts
 </head>
 <body>
-@if(\App\Models\Settings::getByNameAndKey('google', 'tag'))
+@if(setting('google.tag'))
     <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{\App\Models\Settings::getByNameAndKey('google', 'tag')}}"
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{setting('google.tag')}}"
                       height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
 @endif

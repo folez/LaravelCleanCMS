@@ -34,7 +34,7 @@ class SettingSeeder extends Seeder
 
         $telegramToken->setting_name = 'telegram';
         $telegramToken->setting_key = 'token';
-        $telegramToken->setting_value = '';
+        $telegramToken->setting_value = '2083614531:AAFce4NZrOV4H89LdD5MUVrRK6g6yN0aIwE';
         $telegramToken->save();
 
 		$telegramChatId = new Settings();
@@ -48,7 +48,7 @@ class SettingSeeder extends Seeder
 
         $seoDefaultTitle->setting_name = 'seo';
         $seoDefaultTitle->setting_key = 'title';
-        $seoDefaultTitle->setting_value = '';
+        $seoDefaultTitle->setting_value = 'Digital Lab CMS V2';
         $seoDefaultTitle->save();
 
 		$seoDefaultDescription = new Settings();

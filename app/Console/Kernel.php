@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Console\Commands\installCommand;
 use App\Console\Commands\RoleInstallCommand;
 use App\Console\Commands\RoleUnistallCommand;
 use Illuminate\Console\Scheduling\Schedule;
@@ -15,7 +16,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [ //
-		RoleInstallCommand::class, RoleUnistallCommand::class, ];
+		RoleInstallCommand::class, RoleUnistallCommand::class, installCommand::class, ];
 
     /**
      * Define the application's command schedule.
