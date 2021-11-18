@@ -33,6 +33,7 @@
                     Страницы
                 </x-components.admin.sidenav-link>
             </li>
+            @if(env('USE_LANGUAGE'))
             <li class="nav-item">
                 <x-components.admin.sidenav-link link="{{route('admin.languages')}}">
                     <x-slot name="icon">
@@ -41,6 +42,7 @@
                     Языки
                 </x-components.admin.sidenav-link>
             </li>
+            @endif
             <li class="nav-item">
                 <x-components.admin.sidenav-link link="{{route('admin.settings')}}">
                     <x-slot name="icon">
