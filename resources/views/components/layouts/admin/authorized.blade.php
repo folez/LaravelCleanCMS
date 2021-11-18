@@ -39,7 +39,9 @@
                       <i class="far fa-bars"></i>
                     </button>
                     <div class="navbar-content">
-{{--Nothing =_= --}}
+                        <div class="w-100 h-100 d-flex justify-content-end align-items-center">
+                            <a style="text-decoration:none;" href="{{route('admin.logout')}}"  class="d-none d-sm-flex align-items-center ms-3 py-1 exit-btn">Выход <i class="fal fa-sign-out-alt ms-2" style="transform: rotate(180deg)"></i></a>
+                        </div>
                     </div>
                 </nav>
             <div class="page-content">
