@@ -10,49 +10,60 @@ class LocaleMiddleware
 {
     public function handle( Request $request, Closure $next )
     {
-        if(\Route::current()->getPrefix() == '/en'){
-            if($request->session()->get('locale')){
-                $locale = $request->session()->get('locale') ?? 'en';
-                app()->setLocale($locale);
-            } else {
-                app()->setLocale('en');
-            }
-            return $next( $request );
+        $host = url('/');
+        $url = $request->url();
+
+        $lang = $request->session()->get('locale') ?? app()->getLocale() ?? Language::getDefaultLanguage()->code;
+
+        if ( strpos( $url, $host ) === false ) {
+            return $next($request);
         }
 
-        //        return $result;
-        if($request->session()->get('locale')){
-            $locale = $request->session()->get('locale');
-            app()->setLocale($locale);
-        }
-        if($request->session()->get('locale') == 'en'){
-            $segment = $request->segment(1);
-            $segments = $request->segments();
-            $locale = 'en';
-            app()->setLocale($locale);
-            array_unshift($segments, $locale);
+        $default_uri = str_replace( $host, '', $url );
+        $languages   = Language::all();
 
-            return redirect()->to(implode('/',$segments));
-        }
-        return $next( $request );
+        $default_uri = $default_uri ? $default_uri : '/';
+        $parts       = explode( '/', ltrim( $this->trailingslashit( $default_uri ), '/' ) );
 
-        /*foreach (Language::where('is_default', '=',false)->get() as $lang){
-            if(\Route::current()->getPrefix() == "/{$lang->code}"){
-                if($request->session()->get('locale')){
-                    $locale = $request->session()->get('locale') ?? $lang->code;
-                    app()->setLocale($locale);
-                } else {
-                    app()->setLocale($lang->code);
-                }
-//                app()->setLocale($lang->code);
-                return $next( $request );
-            }
+        $url_lang    = $parts[0];
+
+        $defaultLanguageModel = Language::getDefaultLanguage();
+
+        $default_language = $defaultLanguageModel->code;
+
+        if($url_lang == $lang || ( $lang == $default_language )) {
+            return $next($request);
         }
-        //        return $result;
-        if($request->session()->get('locale')){
-            $locale = $request->session()->get('locale');
-            app()->setLocale($locale);
+
+        if ( $languages->contains('code', $url_lang) ) {
+            $default_uri = preg_replace( '!^/' . $url_lang . '(/|$)!i', '/', $default_uri );
         }
-		return $next( $request );*/
+
+        if ( $lang === $default_language ) {
+            $new_uri = '/' . $default_uri;
+        } else {
+            $new_uri = '/' . $lang . $default_uri;
+        }
+
+        $new_uri = preg_replace( '/(\/+)/', '/', $new_uri );
+
+        if ( '/' !== $new_uri ) {
+            $new_url = $host . $new_uri;
+        } else {
+            $new_uri = '/';
+        }
+
+
+        return redirect()->to($new_uri);
+    }
+
+    private function untrailingslashit($string): string
+    {
+        return rtrim( $string, '/\\' );
+    }
+
+    private function trailingslashit( $string ): string
+    {
+        return $this->untrailingslashit( $string ) . '/';
     }
 }
