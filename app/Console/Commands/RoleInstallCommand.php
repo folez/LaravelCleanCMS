@@ -15,7 +15,7 @@ class RoleInstallCommand extends Command
 		if($this->confirm('Install role package?', true)){
             $bar = $this->output->createProgressBar(100);
             $bar->start();
-            shell_exec('composer require spatie/laravel-permission');
+            shell_exec('composer require spatie/laravel-permission --ignore-platform-reqs');
             $bar->finish();
             $this->newLine();
             $this->info('Package install');
@@ -29,3 +29,6 @@ class RoleInstallCommand extends Command
         }
 	}
 }
+#create,edit,delete test
+#create,edit,delete users
+#create,edit,delete,merge groups

@@ -44,7 +44,7 @@ trait WithTree
      */
     public function getEditLink(): ?string
     {
-        return $this->showEditLink ? route('admin.services.edit', ['id' => $this->id]) : null;
+        return $this->showEditLink ? route($this->routeNames['edit'], ['id' => $this->id]) : null;
     }
 
     /**
@@ -52,7 +52,7 @@ trait WithTree
      */
     public function getCreateLink(): ?string
     {
-        return $this->showCreateLink ? route('admin.services.category.create').'?selectedCategory='.$this->id : null;
+        return $this->showCreateLink ? route( $this->routeNames['create'] ).'?selectedCategory='.$this->id : null;
     }
 
     /**

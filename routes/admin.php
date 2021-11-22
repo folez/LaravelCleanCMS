@@ -11,7 +11,10 @@ Route::name('admin.')
 		Route::get('/', \App\Http\Livewire\Admin\Pages\Dashboard::class)->name('home');
 
         Route::get('settings', \App\Http\Livewire\Admin\Pages\Settings::class)->name('settings');
-        Route::get('languages', \App\Http\Livewire\Admin\Pages\Language::class)->name('languages');
+
+        if(env('use_language')){
+            Route::get('languages', \App\Http\Livewire\Admin\Pages\Language::class)->name('languages');
+        }
 
         Route::prefix('pages')->name('pages.')->group(function () {
             Route::get('/', \App\Http\Livewire\Admin\Pages\PageList::class)->name('list');

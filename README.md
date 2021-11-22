@@ -12,6 +12,59 @@
 ## Write admin livewire components
 #### In your .php file, in the `render()` method, at the end of the line `return view();` add `layout('components.layouts.admin.authorized');`
 
+# Tree view component
+In your livewire component include this snippet
+```blade
+<livewire:admin.components.tree.tree-inner :model-class="get_class($itemsCollection[0]->getModel())" :elements="$itemsCollection" />
+```
+### In you parent model add this trait and variables
+```php
+use App\Traits\WithTree;
+
+protected $childModel = YouChildModel::class;
+
+protected $childForeignId = 'foreign_id';
+
+protected $routeNames = [
+'edit'  => 'admin.pages.edit',
+'create'  => 'admin.pages.create',
+];
+
+protected $showEditLink = true;
+
+protected $showCreateLink = true;
+```
+
+### Property descriptions
+
+<table>
+    <tr>
+        <td nowrap=""><strong>$childModel</strong></td>
+        <td nowrap=""><strong>string</strong></td>
+        <td nowrap="">This variable of child element model</td>
+    </tr>
+    <tr>
+        <td nowrap=""><strong>$childForeignId: string</strong></td>
+        <td nowrap=""><strong>string</strong></td>
+        <td nowrap="">This variable of child model, where foreign id for parent table in DB</td>
+    </tr>
+    <tr>
+        <td nowrap=""><strong>$routNames</strong></td>
+        <td nowrap=""><strong>array</strong></td>
+        <td nowrap="">In this variable write you edit and create link</td>
+    </tr>
+    <tr>
+        <td nowrap=""><strong>$showEditLink</strong></td>
+        <td nowrap=""><strong>bool</strong></td>
+        <td nowrap="">This variable toggle show 'edit' link in your tree view item. Default: <b>true</b></td>
+    </tr>
+    <tr>
+        <td nowrap=""><strong>$showCreateLink</strong></td>
+        <td nowrap=""><strong>bool</strong></td>
+        <td nowrap="">This variable toggle show 'create' link in your tree view item. Default: <b>true</b></td>
+    </tr>
+</table>
+
 # Tinymce Instance
 In you component use this example
 ```blade
@@ -38,9 +91,13 @@ In you component use this example
 ## Set listener for livewire
 ```html
 <script>
-    adminFunctions.tinymceInstances()['content'].on('change', () => {
-		@this.set('model', adminFunctions.tinymceInstances()['content'].getContent())
-    })
+document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(() => {
+        adminFunctions.tinymceInstances()['content'].on('change', () => {
+            @this.set('model', adminFunctions.tinymceInstances()['content'].getContent())
+        })
+    }, 200);
+});
 </script>
 ```
 
