@@ -1,4 +1,4 @@
-# DigitalLabCMS
+****# DigitalLabCMS
  DigitalLab CMS Clean
 
 # File structure info
@@ -11,6 +11,28 @@
 
 ## Write admin livewire components
 #### In your .php file, in the `render()` method, at the end of the line `return view();` add `layout('components.layouts.admin.authorized');`
+
+# Automate create translatable model and table
+In your migration file insert this example, this util class, economy you time from create translatable model and migration class for multi language
+```php
+\App\Utils\WithTranslatable::create($modelClass, $foreignId, $mappedFillable, $modelPrimaryId);
+```
+
+### Example **$modelClass**
+```php
+$modelClass = \App\Models\Page::class;
+```
+
+### Example **$mappedFillable**
+```php
+$mappedFillable = [
+    ['string' => 'title'],
+    ['string' => 'name'],
+    ['mediumText' => 'description'],
+    ['mediumText' => 'keywords'],
+    ['longText' => 'body'],
+];
+```
 
 # Tree view component
 In your livewire component include this snippet

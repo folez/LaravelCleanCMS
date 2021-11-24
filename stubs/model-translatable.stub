@@ -1,0 +1,18 @@
+<?php
+
+namespace [namespace];
+
+use Illuminate\Database\Eloquent\Model;
+
+class [class]Translation extends Model
+{
+    public const TABLE_NAME = "[tableName]";
+    protected $table = self::TABLE_NAME;
+    public $timestamps = false;
+
+    public $incrementing = false;
+
+    protected $fillable = [fillable];
+
+    public array $mapFillable = [];
+}
