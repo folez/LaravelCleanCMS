@@ -14,10 +14,21 @@
                 @case('editor')
                 <textarea
                     rows="10"
-                    type="text" data-tiny data-tinymce-id="{{$input}}_{{$language->code}}" id="{{$input}}_{{$language->code}}" class="styled-rounded-accented-input"
+                    type="text" data-tiny data-tinymce-id="{{$input}}_{{$language->code}}" data-is-upload="true" id="{{$input}}_{{$language->code}}" class="styled-rounded-accented-input"
                 >
                         {!! $modelInstance->$input !!}
                     </textarea>
+                @push('adminFunctionsExtension')
+                    <script>
+                        document.addEventListener('DOMContentLoaded', () => {
+                            setTimeout(() => {
+                                adminFunctions.tinymceInstances()['{{$input}}_{{$language->code}}'].on('change', () => {
+                                    @this.set('modelInstance.{{$input}}', adminFunctions.tinymceInstances()['{{$input}}_{{$language->code}}'].getContent())
+                                })
+                            }, 200);
+                        })
+                    </script>
+                @endpush
                 @break
                 @case('input')
                 @default
