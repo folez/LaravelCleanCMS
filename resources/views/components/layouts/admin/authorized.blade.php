@@ -65,6 +65,12 @@
     @stack('scripts')
     <script src="{{asset('admin-resources/js/CKEditorUploadAdapter.js')}}"></script>
     <script src="{{asset('admin-resources/js/admin-functions.js')}}?{{time()}}"></script>
+    <script>
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
+    </script>
     @stack('adminFunctionsExtension')
 </body>
 </html>

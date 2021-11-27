@@ -9,8 +9,10 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @method languageCode
+ * @method languageCodeAll
  * @property Translatable languageCode
  * @method findByLanguageCodeAndId
+ * @function findByLanguageCodeAndId
  */
 trait Translatable
 {

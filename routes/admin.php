@@ -12,14 +12,21 @@ Route::name('admin.')
 
         Route::get('settings', \App\Http\Livewire\Admin\Pages\Settings::class)->name('settings');
 
-        if(env('use_language')){
-            Route::get('languages', \App\Http\Livewire\Admin\Pages\Language::class)->name('languages');
+        if(env('USE_LANGUAGE')){
+            Route::prefix('languages')->name('languages.')->group(function () {
+                Route::get('/', \App\Http\Livewire\Admin\Pages\Language::class)->name('list');
+                Route::get('{id:int?}/translate', \App\Http\Livewire\Admin\Pages\LanguageTranslate::class)->name('translate');
+            });
+
         }
 
         Route::prefix('pages')->name('pages.')->group(function () {
             Route::get('/', \App\Http\Livewire\Admin\Pages\PageList::class)->name('list');
+            Route::get('create', \App\Http\Livewire\Admin\Pages\PageEdit::class)->name('create');
             Route::get('{id:int?}', \App\Http\Livewire\Admin\Pages\PageEdit::class)->name('edit');
         });
+
+        Route::get('menu', \App\Http\Livewire\Admin\Pages\MenuList::class)->name('menu.list');
 
 		Route::get('logout', [\App\Http\Controllers\Admin\AuthController::class, 'logout'])->name('logout');
 

@@ -56,7 +56,6 @@ class WithTranslatable
         self::generateModel($modelClassName);
 
 
-
         Schema::create( $translatableTableName, function ( Blueprint $table ) use ( $foreignTranslateId, $modelClass, $modelFields, $modelPrimaryId ) {
             $table->bigIncrements( 't_id' );
             foreach ($modelFields as $field) {
@@ -79,7 +78,6 @@ class WithTranslatable
 
         $fileOrigin = base_path('/stubs/model-translatable.stub');
         $explodedPath = explode('.',$modelName);
-
         $createdClassPath = explode('/', $classPath);
         $createdClassPathUnsetIndex = count($createdClassPath) - 1;
         unset($createdClassPath[$createdClassPathUnsetIndex]);
@@ -104,12 +102,7 @@ class WithTranslatable
 
     private static function classNamespace()
     {
-        return empty(self::$directories)
-            ? self::$baseClassNamespace
-            : self::$baseClassNamespace.'\\'.collect()
-                ->concat(self::$directories)
-                ->map([Str::class, 'studly'])
-                ->implode('\\');
+        return self::$baseClassNamespace;
     }
 
     private static function classPath()

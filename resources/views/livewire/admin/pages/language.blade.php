@@ -19,6 +19,7 @@
                             <td class="text-md-center">Имя</td>
                             <td class="text-md-center">Код</td>
                             <td class="text-md-center">По умолчанию</td>
+                            <td class="text-md-center">&nbsp;</td>
                         </tr>
                     </thead>
                     <tbody>
@@ -34,6 +35,13 @@
                                             'fa-check' => $language->is_default, 'fa-times' => !$language->is_default
                                            ])></i>
                                     </span>
+                                </td>
+                                <td class="text-lg-center text-end px-2" width="150" data-label="">
+                                    <div class="w-100 d-flex flex-md-row flex-column align-items-center justify-content-between justify-content-md-evenly">
+                                        <a href="{{route('admin.languages.translate', [ 'id' => $language->id])}}" class="mx-lg-0 m-2 color-black text-decoration-none button-unstyled" title="Перевести" data-bs-toggle="tooltip">
+                                            <i class="fal fa-globe fs-4"></i>
+                                        </a>
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach

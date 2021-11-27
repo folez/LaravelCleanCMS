@@ -33,9 +33,17 @@
                     Страницы
                 </x-components.admin.sidenav-link>
             </li>
+            <li class="nav-item">
+                <x-components.admin.sidenav-link link="{{route('admin.menu.list')}}">
+                    <x-slot name="icon">
+                        <i class="fad fa-server"></i>
+                    </x-slot>
+                    Меню
+                </x-components.admin.sidenav-link>
+            </li>
             @if(env('USE_LANGUAGE'))
             <li class="nav-item">
-                <x-components.admin.sidenav-link link="{{route('admin.languages')}}">
+                <x-components.admin.sidenav-link link="{{route('admin.languages.list')}}">
                     <x-slot name="icon">
                         <i class="fal fa-language fs-4"></i>
                     </x-slot>
