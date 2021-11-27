@@ -11,7 +11,7 @@ class Page extends Migration
 		Schema::create( 'page', function ( Blueprint $table ) {
 			$table->bigIncrements( 'id' );
 
-			$table->string('slug');
+			$table->string('slug')->nullable();
 
 			$table->timestamps();
 		} );
