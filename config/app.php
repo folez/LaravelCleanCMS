@@ -175,8 +175,8 @@ $configArray = [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        \App\Providers\CustomBladeServiceProvider::class
-
+        \App\Providers\CustomBladeServiceProvider::class,
+        \App\Providers\TranslationServiceProvider::class,
     ],
 
     /*
