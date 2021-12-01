@@ -70,7 +70,10 @@ class CustomTranslator extends Translator
      */
     protected function getLine($namespace, $group, $locale, $item, array $replace)
     {
-//        $this->load('*', $group, $locale);
+        $this->load('*', $group, $locale);
+        if(!$this->loaded){
+            return $item;
+        }
         $line = Arr::get($this->loaded[$namespace][$locale][$group], $item);
         if (is_string($line)) {
             return $this->makeReplacements($line, $replace);
