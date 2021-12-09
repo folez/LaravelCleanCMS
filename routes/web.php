@@ -22,10 +22,6 @@ if(\Illuminate\Support\Facades\Schema::hasTable(\App\Models\Language::TABLE_NAME
                     return view('welcome', [ 'page' => $page ]);
                 });
             }
-
-            Route::get('/test', function () {
-                echo 13;
-            });
         });
     }
 }
