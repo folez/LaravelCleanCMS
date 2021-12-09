@@ -13,7 +13,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Settings extends Model
 {
-    protected $table = 'setting';
+    public const TABLE_NAME = "setting";
+    protected $table = self::TABLE_NAME;
 
     protected $fillable = [
         'setting_name',

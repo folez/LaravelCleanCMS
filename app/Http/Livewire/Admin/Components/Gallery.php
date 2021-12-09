@@ -52,15 +52,18 @@ class Gallery extends Component
     public function mount( string $modelType, ?int $modelId = null ):void
     {
         $this->modelTyping = $modelType;
+        $this->isEditMode = $isEdit;
+
+        $this->temp_id = $tname;
 
         if(!\Storage::exists('public/gallery')){
             \Storage::makeDirectory('public/gallery');
         }
 
-        $this->isEditMode = $modelId != null;
-
-        if(!$this->isEditMode) $this->temp_id = uniqid();
-        else $this->items = \App\Models\Gallery::findbyModelType($this->modelTyping);
+        if(!$this->isEditMode)
+            $this->items = \App\Models\Gallery::findByModelTypeAndTempId($this->modelTyping, $this->temp_id);
+        else
+            $this->items = \App\Models\Gallery::findByModelTypeAndModelId($this->modelTyping, $this->modelId);
     }
 
     /**

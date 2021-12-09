@@ -14,14 +14,16 @@ use Illuminate\Support\Facades\Route;
 */
 Route::get('change-lang/{lang}', [\App\Http\Controllers\HelperController::class, 'changeLang'])->name('changeLang');
 
-/*foreach (\App\Models\Language::all() as $lang){
-    Route::middleware('locale')->prefix(( $lang->is_default ? '/' : $lang->code ))->group(function () use ($lang) {
-        foreach (\App\Models\Page::languageCode()->get() as $page){
-            Route::get("{$page->slug}", function () use ($page) {
-                return view('welcome', [ 'page' => $page ]);
-            });
-        }
-    });
-}*/
+if(\Illuminate\Support\Facades\Schema::hasTable(\App\Models\Language::TABLE_NAME)) {
+    foreach (\App\Models\Language::all() as $lang){
+        Route::middleware('locale')->prefix(( $lang->is_default ? '/' : $lang->code ))->group(function () use ($lang) {
+            foreach (\App\Models\Page::languageCode()->get() as $page){
+                Route::get("{$page->slug}", function () use ($page) {
+                    return view('welcome', [ 'page' => $page ]);
+                });
+            }
+        });
+    }
+}
 
 Route::get('preview-gallery/{image}', [ \App\Http\Controllers\Admin\ImageCompileController::class, 'renderGalleryAdminPreview' ])->name('renderGalleryAdminPreview');

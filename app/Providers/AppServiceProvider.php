@@ -28,11 +28,6 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
         Paginator::useBootstrap();
-
-        Blade::directive('lang', function ( $expression  ) : string {
-            return getLang($expression);
-        });
-
         //
     }
 }
