@@ -136,12 +136,6 @@ return [
     |
     */
 
-    'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
-        ],
-    ],
-
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Attributes

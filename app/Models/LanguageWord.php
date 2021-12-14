@@ -26,6 +26,14 @@ class LanguageWord extends Model
 
     protected $primaryKey = 'word_id';
 
+    protected $fillable = [
+        'word_custom',
+        'word_default',
+        'word_key',
+        'word_name',
+        'language_id',
+    ];
+
     public static function findByNameAndKeyWord( string $wordName,  string $wordKey ): ?string
     {
         $code = self::getLanguageCode();

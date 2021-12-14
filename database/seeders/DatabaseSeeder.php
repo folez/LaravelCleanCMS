@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             LanguageSeeder::class,
             PageSeeder::class,
             SettingSeeder::class,
+            LangWordSeeder::class,
         ]);
         // \App\Models\User::factory(10)->create();
     }
