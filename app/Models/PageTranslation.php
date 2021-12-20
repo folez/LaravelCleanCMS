@@ -25,7 +25,7 @@ class PageTranslation extends Model
         'title', 'name', 'description', 'keywords', 'body', 'page_id', 'language_id'
     ];
 
-    protected $primaryKey = 'p_id';
+    protected $primaryKey = 't_id';
 
     public array $mapFillable = [
         'name' => [

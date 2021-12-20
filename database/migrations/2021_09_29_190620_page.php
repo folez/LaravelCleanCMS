@@ -12,7 +12,8 @@ class Page extends Migration
 			$table->bigIncrements( 'id' );
 
 			$table->string('slug')->nullable();
-
+            $table->enum('type', ["static",'dynamic'])->nullable('dynamic');
+            
 			$table->timestamps();
 		} );
 	}

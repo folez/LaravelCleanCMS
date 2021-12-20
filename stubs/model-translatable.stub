@@ -12,6 +12,8 @@ class [class]Translation extends Model
 
     public $incrementing = false;
 
+    protected $primaryKey = 't_id';
+
     protected $fillable = [fillable];
 
     public array $mapFillable = [];

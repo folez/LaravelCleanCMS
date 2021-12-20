@@ -10,7 +10,7 @@ class PageTranslation extends Migration
 	public function up()
 	{
 		Schema::create( \App\Models\PageTranslation::TABLE_NAME, function ( Blueprint $table ) {
-            $table->bigIncrements( 'p_id' );
+            $table->bigIncrements( 't_id' );
 			$table->string('title');
 			$table->string('name');
 			$table->mediumText('description');
