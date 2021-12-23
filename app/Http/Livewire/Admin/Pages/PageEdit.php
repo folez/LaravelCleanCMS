@@ -12,6 +12,7 @@ class PageEdit extends Component
 {
     public bool $isEditMode;
     public Page $page;
+    public string $temp_id;
     //    public PageTranslation $pageTranslation;
 
     /*protected $rules = [
@@ -39,6 +40,7 @@ class PageEdit extends Component
     {
         $this->isEditMode = $id != null;
         $this->page = $this->isEditMode ? Page::findByLanguageCodeAndId($id) : new Page();
+        $this->temp_id = uniqid();
         //        $this->pageTranslation = PageTranslation::where('page_id', $this->page->id)->where('language_id', '=', 1)->first();
     }
 
