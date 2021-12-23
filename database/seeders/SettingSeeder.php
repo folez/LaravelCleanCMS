@@ -80,5 +80,13 @@ class SettingSeeder extends Seeder
         $seoDefaultFavicon->setting_value = '';
         $seoDefaultFavicon->setting_type = 'file';
         $seoDefaultFavicon->save();
+
+		$globalHeader = new Settings();
+
+        $seoDefaultFavicon->setting_name = 'global';
+        $seoDefaultFavicon->setting_key = 'head';
+        $seoDefaultFavicon->setting_value = '';
+        $seoDefaultFavicon->setting_type = 'textarea';
+        $seoDefaultFavicon->save();
 	}
 }

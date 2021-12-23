@@ -1,6 +1,6 @@
 <?php
 if ( ! function_exists('setting')){
-    function setting( string $key ): string
+    function setting( string $key ): ?string
     {
         $key = explode('.', $key);
         $settingName = $key[0];

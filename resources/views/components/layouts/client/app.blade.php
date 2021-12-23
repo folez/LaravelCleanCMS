@@ -70,6 +70,8 @@
     <!-- End Facebook Pixel Code -->
     @endif
 
+    {{setting('global.head')}}
+
     @livewireScripts
 </head>
 <body>
