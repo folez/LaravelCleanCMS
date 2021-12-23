@@ -4,7 +4,10 @@
             <div class="col-12">
                 <div class="route-back d-flex flex-wrap p-2 justify-content-between align-items-center">
                     <h5 class="ps-3 m-0">Языки</h5>
-                    <a href="#" data-bs-target="#createLanguage" data-bs-toggle="modal" class="btn btn-accent py-1 px-2">Добавить <i class="far fa-plus ms-2"></i></a>
+                    <div>
+                        <a href="{{route('admin.languages.create')}}" class="btn btn-accent py-1 px-2">Добавить фразу <i class="far fa-quote-right ms-2"></i></a>
+                        <a href="#" data-bs-target="#createLanguage" data-bs-toggle="modal" class="btn btn-accent py-1 px-2">Добавить <i class="far fa-plus ms-2"></i></a>
+                    </div>
                 </div>
             </div>
         </div>

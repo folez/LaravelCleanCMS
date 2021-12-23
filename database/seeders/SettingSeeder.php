@@ -34,7 +34,7 @@ class SettingSeeder extends Seeder
 
         $telegramToken->setting_name = 'telegram';
         $telegramToken->setting_key = 'token';
-        $telegramToken->setting_value = '2083614531:AAFce4NZrOV4H89LdD5MUVrRK6g6yN0aIwE';
+        $telegramToken->setting_value = ':AAFce4NZrOV4H89LdD5MUVrRK6g6yN0aIwE';
         $telegramToken->save();
 
 		$telegramChatId = new Settings();

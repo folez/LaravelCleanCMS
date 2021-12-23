@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Language;
 use App\Models\LanguageWord;
 use Illuminate\Database\Seeder;
 
@@ -20,7 +21,10 @@ class LangWordSeeder extends Seeder
             2 => 'en',
             1 => 'ru'
         ];
-        foreach ($langs as $langID =>  $lang) {
+        $langs = Language::all();
+        foreach ($langs as $lng) {
+            $langID = $lng->id;
+            $lang = $lng->code;
             foreach ($filesArray as $fileName) {
                 $wordsKey = $fileLoader->load($lang, $fileName);
                 foreach ($wordsKey as $wordKey => $wordCustom) {

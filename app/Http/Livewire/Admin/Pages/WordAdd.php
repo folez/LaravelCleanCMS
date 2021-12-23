@@ -45,7 +45,7 @@ class WordAdd extends Component
     public function save()
     {
         $this->validate();
-//        dd($this->langInputs);
+        //        dd($this->langInputs);
 
         foreach ($this->languages as $language) {
             $word = new LanguageWord();
@@ -60,8 +60,8 @@ class WordAdd extends Component
         return redirect()->route('admin.languages.list');
     }
 
-	public function render()
-	{
-		return view( 'livewire.admin.pages.word-add' )->layout('components.layouts.admin.authorized');
-	}
+    public function render()
+    {
+        return view( 'livewire.admin.pages.word-add' )->layout('components.layouts.admin.authorized');
+    }
 }

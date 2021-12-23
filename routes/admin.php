@@ -18,9 +18,7 @@ Route::name('admin.')
                 Route::get('create', \App\Http\Livewire\Admin\Pages\WordAdd::class)->name('create');
                 Route::get('{id:int?}/translate', \App\Http\Livewire\Admin\Pages\LanguageTranslate::class)->name('translate');
             });
-
         }
-
         Route::prefix('pages')->name('pages.')->group(function () {
             Route::get('/', \App\Http\Livewire\Admin\Pages\PageList::class)->name('list');
             Route::get('create', \App\Http\Livewire\Admin\Pages\PageEdit::class)->name('create');
