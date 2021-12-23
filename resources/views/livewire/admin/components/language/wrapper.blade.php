@@ -15,10 +15,10 @@
             'show' => $lang->is_default,
             'active' => $lang->is_default
             ]) id="lang_{{$lang->code}}" role="tabpanel" aria-labelledby="home-tab" wire:ignore.self>
-            <div class="w-100 mt-3">
-                <livewire:admin.components.language.content wire:key="{{$lang->id}}" :model="$model" :p-key="$primaryKey" :id="$modelId" :language="$lang"/>
+                <div class="w-100 mt-3">
+                    <livewire:admin.components.language.content wire:key="{{$lang->id}}" :model="$model" :p-key="$primaryKey" :id="$modelId" :language="$lang"/>
+                </div>
             </div>
+        @endforeach
     </div>
-    @endforeach
-</div>
 </div>
