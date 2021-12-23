@@ -32,9 +32,10 @@
                 @break
                 @case('input')
                 @default
-                <input type="text" class="styled-rounded-accented-input" wire:model="modelInstance.{{$input}}">
+                <input type="text" class="styled-rounded-accented-input" wire:model.defer="modelInstance.{{$input}}">
                 @break
             @endswitch
+            @error("modelInstance.{{$input}}") <span class="error">{{ $message }}</span>  @enderror
         </div>
     @endforeach
 </div>
