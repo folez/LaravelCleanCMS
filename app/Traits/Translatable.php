@@ -151,4 +151,10 @@ trait Translatable
         //        ->whereNotNull('translation.name')
     }
 
+    public static function find( int $id )
+    {
+        $self = new static();
+        return self::where($self->primaryKey, $id)->languageCode()?->first();
+    }
+
 }
