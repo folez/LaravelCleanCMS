@@ -1,5 +1,5 @@
-****# DigitalLabCMS
- DigitalLab CMS Clean
+****# Clean Laravel CMS
+ Laravel CMS Clean
 
 # File structure info
 
