@@ -1,15 +1,6 @@
 <form class="admin-login-form m-2 p-4 bg-white" wire:submit.prevent="submit">
     <div class="row">
         <div class="col-lg-10 offset-lg-1">
-            <div class="row">
-                <div class="col-12">
-                    <div class="d-flex justify-content-center">
-                        <a href="https://digitallab.com.ua/" target="_blank">
-                            <img src="{{asset('admin-resources/img/digital-logo.svg')}}" class="img-fluid">
-                        </a>
-                    </div>
-                </div>
-            </div>
             <div class="row mt-4">
                 <x-components.forms.floating-label-input
                     class="col-lg-12"

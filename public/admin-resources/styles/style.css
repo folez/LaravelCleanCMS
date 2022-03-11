@@ -212,7 +212,6 @@ body.dark-mode{
 }
 
 .login-background {
-    background-image: url("/admin-resources/img/login-bg.jpg");
     height: 100vh;
     width: 100vw;
     background-size: cover;

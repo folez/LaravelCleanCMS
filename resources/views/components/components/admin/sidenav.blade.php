@@ -1,13 +1,6 @@
 <nav class="sidebar">
       <div class="sidebar-header px-2">
           <div class="row h-100 w-100 flex-nowrap m-0">
-                <div class="col-10 sidebar-brand">
-                    <div class="d-flex align-items-center h-100">
-                         <a href="/" class="px-2">
-                            <img src="{{asset('admin-resources/img/digital-logo.svg')}}" class="img-fluid w-100">
-                        </a>
-                    </div>
-                </div>
               <div class="col d-flex justify-content-center align-items-center">
                   <button class="sidebar-toggler button-unstyled" onclick="adminFunctions.toggleSidebar()">
                       <i class="far fa-bars"></i>

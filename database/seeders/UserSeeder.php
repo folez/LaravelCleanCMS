@@ -10,9 +10,9 @@ class UserSeeder extends Seeder
 	public function run()
 	{
 	    $user = User::create([
-	        'name'     => 'DigitalLab',
-            'email'    => 'dev@digitallab.com.ua',
-            'password' => \Hash::make('Digital123@')
+	        'name'     => 'FoLez',
+            'email'    => 'admin@example.com',
+            'password' => \Hash::make('GitHub123@')
         ]);
 		//
 	}
