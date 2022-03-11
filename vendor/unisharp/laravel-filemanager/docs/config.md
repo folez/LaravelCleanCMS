@@ -2,11 +2,12 @@
 
 ## Routing:
 
-| Key                  | Type    | Description                                                                                                  |
-|----------------------|---------|--------------------------------------------------------------------------------------------------------------|
-| use\_package\_routes | boolean | Use routes from package or not. If false, you will need to define routes to all controllers of this package. |
-| middlewares          | array   | Middlewares to be applied to default routes. For laravel 5.1 and before, remove 'web' from the array.        |
-| url_prefix           | string  | The url prefix to this package. Change it if necessary.                                                      |
+### use\_package\_routes
+
+* type: `boolean`
+* default: `true`
+
+Use default routes or not. You will need to define routes to all controllers of this package if this is set to `false`.
 
 
 ## Multi-User Mode:
@@ -51,74 +52,211 @@ If you want to customize client folders:
 
 All users can upload and manage files within shared folders. Set to `false` to turn this feature off.
 
-## Working Directory:
 
-| Key                  | Type   | Description                                                                                                                                                                     |
-|----------------------|--------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| base_directory       | string | Which folder to store files in project, fill in 'public', 'resources', 'storage' and so on. Does not support path relative path like `../public_html` or `public/upload/user/`. |
-| images\_folder\_name | string | Does not support path relative path like `../public_html` or `public/upload/user/`.                                                                                             |
-| files\_folder\_name  | string | Does not support path relative path like `../public_html` or `public/upload/user/`.                                                                                             |
-| shared\_folder\_name | string | Does not support path relative path like `../public_html` or `public/upload/user/`.                                                                                             |
-| thumb\_folder\_name  | string | Does not support path relative path like `../public_html` or `public/upload/user/`.                                                                                             |
+## Folder Categories
 
+### folder\_categories
 
-## Startup Views:
+* type: `array` (nested)
+* default: 
 
-| Key                   | Type   | Description                                                     |
-|-----------------------|--------|-----------------------------------------------------------------|
-| images\_startup\_view | string | The default display type for images. Supported: "grid", "list". |
-| files\_startup\_view  | string | The default display type for files. Supported: "grid", "list".  |
+```
+'folder_categories' => [
+    'file'  => [
+        'folder_name'  => 'files',
+        'startup_view' => 'list',
+        'max_size'     => 50000, // size in KB
+        'valid_mime'   => [
+            'image/jpeg',
+            'image/pjpeg',
+            'image/png',
+            'image/gif',
+            'application/pdf',
+            'text/plain',
+        ],
+    ],
+    'image' => [
+        'folder_name'  => 'photos',
+        'startup_view' => 'grid',
+        'max_size'     => 50000, // size in KB
+        'valid_mime'   => [
+            'image/jpeg',
+            'image/pjpeg',
+            'image/png',
+            'image/gif',
+        ],
+    ],
+],
+```
+
+The default config creates two folder categories, `file` and `image`, each operates independently. Files uploaded by users will be placed under one of these folder categories, depend on which is configured with your WYSIWYG editor or stand-alone upload button.
+
+Detail options are explained here: 
+
+* `folder_name`: The folder name of the category. For example, if `folder_name` is set to `files2` then: 
+  * directory path of the private folder will be: `/<path-to-laravel>/storage/app/public/files2/<user-id>/`
+  * directory path of the shared folder will be: `/<path-to-laravel>/storage/app/public/files2/shares/`
+* `startup_view`: The default display mode. Available options: `list` & `grid`.
+* `max_size`: The maximum size(in KB) of of a single file to be uploaded.
+* `valid_mime`: Only files with mime types listed here are allowed to be uploaded. See [full mime types list](http://docs.w3cub.com/http/basics_of_http/mime_types/complete_list_of_mime_types/).
+
+## Pagination:
+
+### paginator
+
+* type: `array`
+* default: 
+
+```
+'paginator' => [
+    'perPage' => 30,
+],
+```
 
 
 ## Upload / Validation:
 
-| Key                        | Type    | Description                                                               |
-|----------------------------|---------|---------------------------------------------------------------------------|
-| disk (Alpha version only)  | string  | Correspond to `disks` section in `config/filesystems.php`.                |
-| rename_file                | string  | If true, the uploaded file will be renamed to uniqid() + file extension.  |
-| alphanumeric_filename      | string  | If  true, non-alphanumeric file name will be replaced with `_`.           |
-| alphanumeric_directory     | boolean | If true, non-alphanumeric folder name will be rejected.                   |
-| should\_validate\_size     | boolean | If true, the size of uploading file will be verified.                     |
-| max\_image\_size           | int     | Specify max size of uploading image.                                      |
-| max\_file\_size            | int     | Specify max size of uploading file.                                       |
-| should\_validate\_mime     | boolean | If true, the mime type of uploading file will be verified.                |
-| valid\_image\_mimetypes    | array   | Array of mime types. Available since v1.3.0 .                             |
-| should\_create\_thumbnails | boolean | If true, thumbnails will be created for faster loading.                   |
-| raster\_mimetypes          | array   | Array of mime types. Thumbnails will be created only for these mimetypes. |
-| create\_folder\_mode       | int     | Permission setting for folders created by this package.                   |
-| create\_file\_mode         | int     | Permission setting for files uploaded to this package.                    |
-| should\_change\_file\_mode | boolean | If true, it will attempt to chmod the file after upload                   |
-| valid\_file\_mimetypes     | array   | Array of mime types. Available since v1.3.0 .                             |
+### disk
 
-##### Appendix:
+* type: `string`
+* default: `public`
 
-  * [full mime types list](http://docs.w3cub.com/http/basics_of_http/mime_types/complete_list_of_mime_types/)
-  * [Laravel File Storage](https://laravel.com/docs/master/filesystem)
+Disk name of Laravel File System. All files are placed in here. Choose one of the `disks` section in `config/filesystems.php`.
 
+### rename\_file
 
-## Thumbnail dimensions:
+* type: `boolean`
+* default: `false`
 
-| Key                | Type   | Description                                      |
-|--------------------|--------|--------------------------------------------------|
-| thumb\_img\_width  | string | Width of thumbnail made when image is uploaded.  |
-| thumb\_img\_height | string | Height of thumbnail made when image is uploaded. |
+If set to `true`, the uploaded file will be renamed using `uniqid()`.
+
+### alphanumeric\_filename
+
+* type: `boolean`
+* default: `false`
+
+If set to `true`, non-alphanumeric file name will be replaced with `_`.
+
+### alphanumeric\_directory
+
+* type: `boolean`
+* default: `false`
+
+If set to `true`, non-alphanumeric folder name will be rejected.
+
+### should\_validate\_size
+
+* type: `boolean`
+* default: `false`
+
+If set to `true`, the size of uploading file will be verified.
+
+### should\_validate\_mime
+
+* type: `boolean`
+* default: `true`
+
+If set to `true`, the mime type of uploading file will be verified.
+
+### over\_write\_on_duplicate
+
+* type: `int`
+* default: `false`
+
+Define behavior on files with identical name. Setting it to `true` cause old file replace with new one. Setting it to `false` show `error-file-exist` error and abort the upload process.
+
+## Thumbnail
+
+### should\_create\_thumbnails
+
+* type: `boolean`
+* default: `true`
+
+If set to `true`, thumbnails will be created for faster loading.
+
+### thumb\_folder\_name
+
+* type: `string`
+* default: `thumbs`
+
+Folder name to place thumbnails.
+
+### raster\_mimetypes
+
+* type: `array`
+* default:
+
+```
+'raster_mimetypes' => [
+    'image/jpeg',
+    'image/pjpeg',
+    'image/png',
+],
+```
+
+Create thumbnails automatically only for listed types. See [full mime types list](http://docs.w3cub.com/http/basics_of_http/mime_types/complete_list_of_mime_types/).
+
+### thumb_img_width
+
+* type: `int`
+* default: `200`
+
+Thumbnail images width (in px).
+
+### thumb_img_height
+
+* type: `int`
+* default: `200`
+
+Thumbnail images height (in px).
+
+Create thumbnails automatically only for listed types.
+
 
 
 ## File Extension Information
 
-| Key               | Type  | Description                                 |
-|-------------------|-------|---------------------------------------------|
-| file\_type\_array | array | Map file extension with display names.      |
-| file\_icon\_array | array | Map file extension with icons(font-awsome). |
+### file\_type\_array
 
+* type: `array`
+* default:
+
+```
+'file_type_array' => [
+    'pdf'  => 'Adobe Acrobat',
+    'doc'  => 'Microsoft Word',
+    'docx' => 'Microsoft Word',
+    'xls'  => 'Microsoft Excel',
+    'xlsx' => 'Microsoft Excel',
+    'zip'  => 'Archive',
+    'gif'  => 'GIF Image',
+    'jpg'  => 'JPEG Image',
+    'jpeg' => 'JPEG Image',
+    'png'  => 'PNG Image',
+    'ppt'  => 'Microsoft PowerPoint',
+    'pptx' => 'Microsoft PowerPoint',
+],
+```
+
+Gives description for listed file extensions.
 
 ## php.ini override
 
-| Key                 | Type             | Description                                                                                                                       |
-|---------------------|------------------|-----------------------------------------------------------------------------------------------------------------------------------|
-| php\_ini\_overrides | array or boolean | These values override your php.ini settings before uploading files. Set these to false to ingnore and apply your php.ini settings |
+### php\_ini\_overrides
 
-### Caveats
+* type: `array` or `boolean`
+* default:
+
+
+```
+'php_ini_overrides' => [
+    'memory_limit' => '256M',
+],
+```
+
+These values override your php.ini settings before uploading files. Set these to false to ingnore and apply your php.ini settings
+
+⚠️ **Caveats**
 
 The php\_ini\_overrides are applied on every request the filemanager does and are reset once the script has finished executing.
 This has one drawback: any ini settings that you might want to change that apply to the request itself will not work.

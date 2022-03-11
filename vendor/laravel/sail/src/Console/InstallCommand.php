@@ -92,7 +92,7 @@ class InstallCommand extends Command
             ->filter(function ($service) {
                 return in_array($service, ['mysql', 'pgsql', 'mariadb', 'redis', 'meilisearch', 'minio']);
             })->map(function ($service) {
-                return "    sail{$service}:\n        driver: local";
+                return "    sail-{$service}:\n        driver: local";
             })->whenNotEmpty(function ($collection) {
                 return $collection->prepend('volumes:');
             })->implode("\n");
@@ -105,7 +105,7 @@ class InstallCommand extends Command
 
         // Replace Selenium with ARM base container on Apple Silicon...
         if (in_array('selenium', $services) && php_uname('m') === 'arm64') {
-            $stubs = str_replace('selenium/standalone-chrome', 'seleniarm/standalone-chromium', $stubs);
+            $dockerCompose = str_replace('selenium/standalone-chrome', 'seleniarm/standalone-chromium', $dockerCompose);
         }
 
         // Remove empty lines...
